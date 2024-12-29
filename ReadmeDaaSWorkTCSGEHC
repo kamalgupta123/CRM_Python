@@ -1,0 +1,405 @@
+ODP-Daas-BE/ibwingtowing (gehealthcare.com) - batch extract daas
+ 
+https://github.gehealthcare.com/ODP-Daas-API/iscst-ibw2w - API
+ 
+aditya sarangi
+ 
+pusle access
+ 
+sso give to email for access
+ 
+Daas admin portal frontend access
+ 
+Is this redshift table schema
+ 
+ADR - Application Development Team
+ 
+.
+ 
+AutoSC connection history
+ 
+and AutoSC connection metrics
+ 
+both should be one API not two different API
+ 
+If client says two diff then only two else 1
+ 
+Gupta, Kamal (Consultant)
+ADR - Application Development Team
+
+I am From FFA Dev Team
+
+ 
+Cached API use ELastic search and is fast than Direct API
+ 
+Bulk API uses two url with token to access data
+ 
+Sync API uses pagination with all data no 2 URLS
+ 
+These all bulk, sync, cached, and direct are dropdowns.
+ 
+Filters to add where conditions in form
+ 
+Project form submit CI/CD pipeline create in Jenkins
+ 
+API form submit code in gihub push and Then PR raise to add components in AWS
+ 
+In Cached API ELastic Search is filled by a background job Indexer job which takes data from database and fill elastic search.
+ 
+Cached API has indexer backend job to fill elastic search
+ 
+One IDM to make request for Approvals of service
+ 
+Check confluence page and KTs to take access - there is confluence page for configurations
+ 
+batch extract and API this are two ways by which daas provide data as a service to client
+ 
+for batch extract we are generating the data files which have to be store some where and we are working on aws console so s3 is a perfect solution for that
+ 
+Where are we using batch extract ? -- there are multiple projects
+Where the data of batch extract is being used ? --  client will use it via dell bhoomi or other extraction apps
+Is it being used in some other project ? -- YES 
+How that batch extract data is being used ? Can you please tell ? -- not sure
+ 
+Gupta, Kamal (Consultant)11/25/2024 4:14 PMHari in DaaS why are we uploading the final data in S3. Why is that required ?
+Required for other application to consume the data
+ 
+access it taken and project is to be created in 1 day - Rajat
+ less than 40 hours timesheet client - add comment in the timesheet
+ 
+Mail to CI/CD team for Repo link.
+ 
+For AWS and REDSHIFT SCHEMA DATABASE ACCESS USE ONE IDM
+ 
+ 
+FOR GITHUB REPO ACCESS USE SERVICE NOW RITM
+ 
+FOR GITHUB REPO ACCESS :
+ 
+RAISE SERVICE RITM Request : https://geit.service-now.com/now/nav/ui/classic/params/target/com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3D94f544ffdb36f2404a29df6b5e96199c
+ 
+RAISE WORKFLOW REQUEST : https://app.sc.ge.com/workflows/initiate/914536
+ 
+RAISE EMAIL FOR ACCESS TO CICD TEAM FOR REPO ACCESS : EMAIL ID : health_odp_cicd_dev_team@ge.com
+ServiceNow
+ 
+GITHUB REPO ACCESS TAKEN
+ 
+1 API Created systemconnectconfig
+ 
+Took access while testing the query
+ 
+studied document
+ 
+AWS components not created ... step  function error.
+ 
+Wait for one api to create other APIs are copy paste currently 1st API creating AWS components issue CI/CD resolve other APIs complete in 1 Day copy-paste it is>
+ 
+Get Requirement for API
+
+See Rajat creating API through FOrm
+
+Then create APIs yourself.
+ 
+8 hours shift is there
+ 
+maximum 40 hours for a week 8 hours per day working - client timesheet. started working on 11 November 2024
+ 
+first 2 week 0
+ 
+no entry please don't make
+ 
+Saturday sunday and holiday 0 hours working client timesheet
+
+other days working - 8 hours fill - client timesheet
+
+total working whole week should not be more than 40
+ 
+Curricula ID: 22264
+ 
+E2 Level Course in Competencies section in IEvolve.
+ 
+No Low course doing need
+ 
+E2 in cloud computing do
+ 
+do certification, E2 and increase your T-Factor
+ 
+Drop message to R balachandran once approved by Renjith
+ 
+Work on other APIs parallely
+ 
+GESCTASK8398360
+ 
+API Form will store the data in DDB and
+ 
+THen you have to run a glue script
+ 
+Glue script will take query inputted in form from DDB and project data
+ 
+raise PR to create components in AWS.
+ 
+Shorten the SQL query tried creating other API config_information...
+ 
+API created successfully
+ 
+Approved also API
+ 
+While running glue script to trigger PR to generate AWS components 
+ 
+S3 access issue was there
+ 
+Select North Virginia in AWS console.
+ 
+Doifode, Piyush (Consultant) Saraf, Rajat (Consultant) has mentioned that S3 bucket access has been approved. However, after running the code generator script, it is still failing. It seems that there is a form from another project and API that someone has filled out, which is trying to access the S3 bucket. Since this form belongs to a different project that does not have S3 access, it is causing an issue. Therefore, we need to delete that form. Rajat is currently working on deleting it.
+ 
+@All I will be on sick leave today due to high grade fever.
+
+Create fresh api
+ 
+remove blue
+ 
+flat query browser paste
+ 
+after form submit approve
+ 
+run glue script in AWS
+ 
+after running glue script in AWS ..... automation feature branch has AWS code
+ 
+automatically getting pushed to dev branch and myinstall branch ... code of automation feature branch ... All AWS components
+ 
+modify the AWS components .... in code by switching to myinstall branch and again raise PR to modify code
+ 
+PR raised ... AWS components created ...
+ 
+Test API in API gateway and APIGEE endpoint.
+ 
+5 API created
+ 
+NSSO and new schema access required
+ 
+report alpha
+ 
+DaaS team work on report Alpha
+ 
+Database team old access revoked
+ 
+get access from other than abbey
+ 
+raise RITM take help for sreedhar...with screenshot of all 4 schemas
+ 
+ping everyone seperately for approval
+ 
+I've reviewed the document you provided. Here's the content formatted according to the instructions:
+Context Setting:
+Client Introduction: The client is a leading organization in the healthcare industry, with a significant presence in the market and a global operational scale. They faced challenges in maintaining up-to-date server management and data integrity, leading to potential security vulnerabilities. The adverse impact included increased downtime, operational inefficiencies, and risk exposure, resulting in an estimated 2% rise in operational costs.
+Problem Statement: The client was experiencing difficulties in managing server patches and upgrades, which were crucial for preventing security threats and maintaining IT infrastructure efficiency.
+CM's Response:
+Analysis: Working in a dynamic environment with TCS, I had the opportunity to contribute to a critical project for a major client. My role involved enhancing their existing cloud patching portal, which patches and upgrades servers, helping to prevent potential security threats. The portal is integral to maintaining the client’s IT infrastructure's security and efficiency.
+Recommendations:
+User Interface Improvement: Conduct user testing to identify pain points and redesign the interface to enhance user experience.
+SEO Strategy Revision: Revert to the previous SEO strategy while incorporating new keywords and optimizing content for better search engine visibility.
+Marketing Campaign: Launch a targeted marketing campaign to regain lost traffic and attract new customers.
+Next Steps: Schedule a meeting with the client's team to discuss the findings and implement the recommended changes.
+TCS-Client Relationship: TCS has partnered with the client for over 1 year, delivering comprehensive IT solutions, including application development, cloud services, and cybersecurity. The client faced challenges in server management and data security. TCS was selected for its expertise in developing robust solutions to enhance operational efficiency and safeguard critical infrastructure.
+Contextual Master Background: KAMAL has been a Contextual Master at TCS for over 1 year, contributing significantly to various projects. In the CloudX patching portal, he enhanced system functionalities by ensuring accurate representation of all IRIS servers, with no missing data. His experience in debugging APIs and developing new microservices has been invaluable. He integrated RabbitMQ for asynchronous Celery job execution and utilized BDDs and Postman for rigorous API testing, ensuring the portal's security and functionality. Currently, KAMAL is applying his contextual knowledge in a Data as a Service (DaaS) project, leveraging Python and AWS to automate data handling from an RDS database to an S3 bucket, enhancing data accessibility and efficiency for clients.
+Solution Provided: The implemented solution transformed the client’s patching process by automating server upgrades, which reduced manual intervention and minimized downtime. This led to substantial operational cost savings and improved security compliance. By ensuring data integrity and enabling asynchronous job execution, the solution delivered enhanced infrastructure reliability. These changes allowed the client to allocate resources more effectively, streamline maintenance efforts, and achieve greater focus on strategic business initiatives.
+Client Benefits: The solution provided significant benefits, including reduced operational costs, improved security compliance, and enhanced infrastructure reliability. These improvements allowed the client to allocate resources more effectively and focus on strategic business initiatives.
+Accolades: My efforts in developing these solutions have been recognized by clients for enhancing operational efficiency and security. I am excited to share these experiences with the Contextual Masters program and contribute further to TCS’s success story.
+TCS Benefits: This solution improved customer satisfaction and garnered additional business for TCS in terms of service availability during the COVID-19 pandemic. This endeavor paved the way for future engagements for TCS as well, not just with this client but also in the collaboration domain. TCS was awarded a new project of $55,000, which led to the addition of 2 FTEs. Additionally, this solution minimized capacity issues, thereby reducing tickets and saving operational resource hours.
+Let me know if you need any further adjustments or additional information!
+ 
+Cloud Ops team will create password and share it...confirmed by rajat he talked with baba billumastan and Kishore, Morampudi
+ 
+Rajat told all request for NPSSO resolved
+ 
+Schema access ?
+ 
+Got all 4 schema access. One schema do not have table created/present so not able to query db for that schema
+ 
+For Prod Issues of DaaS ask R, Aravind Antony Jerome (Consultant) 
+ 
+not requirred permissions to push logs into cloudwatch from API Gateway and lambda
+ 
+does not have required permissions trusted entities mein API gateway aana chhahiye to get permission to push API gateway logs in cloudwatch --- Shantanu Gole will do that put api gateway in trusted entities tomorrow
+ 
+Also Resource mein lambda mein * --- restrictions hona chahiye for permissions for lambda to put error logs in cloudwatch
+ 
+Tomorrow meeting so rajat can also join and test the API systemconnctconfig and show demo
+ 
+Siddhant wants all APIs to be test in Postman Collection with complete creds
+ 
+Also if the openapispec.json would change in futurw or remain constant
+
+IN postman collection API Key (Bearer Token) and Base URL is missing
+
+API Key we can create there is a postman collection import the postman collection and for stage if you want to get token run stage url in the postman collection else prod token you want to get run prod url
+ 
+All 5 APIs have error .... run systemconnectconfig and configinformation that may run all APIs will not run
+ 
+Some APIs query needs to be changed
+ 
+In future there can be a change we are not sure about it ....can you please make such a way change would be possible if in future we want to make change ...........as some APIs query we may want to change in future
+ 
+Add this policy to lambda https://docs.aws.amazon.com/lambda/latest/dg/access-logs.html it will push logs 100% guarantee
+Access to CloudWatch Logs - AWS Lambda
+Lambda roles must have access to CloudWatch Logs. If you are building a policy manually, ensure that it includes:
+ 
+API Gateway :
+ 
+Managed Policy: AmazonAPIGatewayPushToCloudWatchLogs {   "Version" : "2012-10-17",   "Statement" : [     {       "Effect" : "Allow",       "Action" : [         "logs:CreateLogGroup",         "logs:CreateLogStream",         "logs:DescribeLogGroups",         "logs:DescribeLogStreams",         "logs:PutLogEvents",         "logs:GetLogEvents",         "logs:FilterLogEvents"       ],       "Resource" : "*"     }   ] }
+ 
+Enable API Gateway Logging in Settings
+ 
+100 % API Gateway logging will work
+ 
+https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html...
+GetSecretValue - AWS Secrets Manager
+Retrieves the contents of the encrypted fields SecretString or SecretBinary from the specified version of a secret, whichever contains content.
+ 
+Due to secret manager API used in lambda API failing.....wrong credentials used...
+ 
+if there is a glue job check if secret credentials are correct or not
+ 
+CI/CD team secret manager issue can check not cloudops teams
+ 
+In lambda layers --- lambda function is coming external api secret manager 
+ 
+logs now coming
+ 
+check with CI/CD team where wrong secret value passed. why error is coming in lambda layer
+ 
+base url will be sent by apigee team t
+ 
+AWS console access took...email send for secret manager issue...sending email to siddhant postman collection for token and base url by APIGEE team
+ 
+base url of api created stage as per environment : https://stage-api.gehealthcare.com/healthcare/api/odpdaas2/projectname/apiname/getdata?arg1=val&arg2=val
+ 
+Provided by APIGEE team. 
+ 
+Correct secret credentials ask if possible PR create updates
+ 
+requirement sheet check
+ 
+siddhant creds correct tell shared postman collection for DaaS API to create TOken
+ 
+Setup call with rajat siddhant rajat better explain
+ 
+Secret credential kya hai
+ 
+Rajat ask
+ 
+requirement sheet did you check rajat
+ 
+mail cloudops team and raju anand facing error provide correct secret credentials and update them getting error....raju anand did not give secret credentials
+ 
+regarding meeting tell time in group
+
+update requirement sheet url
+ 
+write email
+ 
+time for meeting
+ 
+update requirement sheet send email along with postman collection
+ 
+NPSSO for secret manager and schema access raise for prod
+ 
+Saivynt - Redshift US PROD REPORT ALPHA --- same name instead of innovation prod
+ 
+pulse portal CC number aditya ask --- prod mein change -- this number should be there --- any change do 11 digits number 
+ 
+each time name change of PR ... to create aws components
+ 
+in prod
+ 
+for new CC pulse portal raise new request change request
+ 
+after implement use CC number
+ 
+systemid and other params same
+ 
+Form fill as stage of prod api and project
+ 
+code in github create
+ 
+code generator script run PR create put components in AWS from github
+ 
+schema and NPSSO secret credentials access take by NPSSO service workflow request and saivynt of prod
+ 
+try to test API created in AWS console
+ 
+API will show errors while testing in API Gateway
+ 
+Resolve those errors check respective teams
+ 
+Drop email ...make groups take follow ups
+ 
+Check cloudwatch for errors
+ 
+change name of secret
+
+ddb file make changes of query if query is failing and secret name update
+ 
+successfully run in postman
+ 
+as per this url
+ 
+https://{apigatewayid}-vpce-{vpceid}.execute-api.us-east-1.amazonaws.com/{innovation}/{apiname}
+ 
+Then contact APIGEE team
+ 
+All 5 API run
+ 
+Successfully
+ 
+One API fail due to long query
+ 
+Short make query
+ 
+Secret issue resolve … name update
+ 
+Form fill --- schema access take -- NPSSO create
+ 
+tried 600 ms still error...modify query talked with rajat....talked with siddhant...payload size doubt other doubts clear..
+ 
+send payload sizes email to siddhant....ask about schema missing from respective teams....
+ 
+for API creation.....project approval is required....without project approval we cannot fill API form...
+ 
+to create AWS components without running codegenerator script ... copy openapispec.json modify 245792935030(prod-user) from 541574621075(innovation-user) and API id from API Gateway present corresponding to myinstall project file in API gateway and vpc id present in left in bottom in API settings in AWS console
+ 
+dev branch has staging form and stage api
+ 
+master branch has prod form and prod apis
+ 
+create a new branch from dev such as myinstall copy openapispec of dev and put in new brach and merge that branch in master after making modifications for prod in openapispec.json....to create AWS components without running codegenerator script
+ 
+when branch merge AWS components create automatically without running codegeneratorscript
+ 
+To modify ddb to run api successfully to change query and secret in staging create new branch from dev and make changes in ddb there and again push code in that brach and merge new brach to dev as dev is for staging
+ 
+form fill … payload size share … query run try 2 min 4 sec taking initially 1 st time run … NPSSO and schema access take … missing schema email sent
+ 
+without API gateway we cannot check where the issue is why request timed out 
+ 
+Raised RITM
+
+Filled FOrms of all PROD APIs .... query test API Gateway need access...
+ 
+Monday status
+ 
+After filling forms for 5 APIs Ran code generator script got s3 bucket access issue...analysed the issue with rakshith got approval from Anand as he is bucket owner for approval from providing read/write access to bucket now taking read write access..raised RITM for S3 bucket also looking to hear back from them
+ 
+For query issue API gateway raised RITM also email particular team along with RITM number looking for hearing back from them
+ 
+Missing schemas Raised RITM and dropped emails looking forward to hearing back from them
+ 
+ 
+Also texted people personally
+ 
+Shantanu Gole and Soumya working on it
+ 
+ 
+ 
