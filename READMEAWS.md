@@ -860,3 +860,66 @@ AWS WAF (Web Application Firewall) -
 Rules rules written in access control list to protect your web application in AWS to protect against SQL Injection and cross side scripting
 
 Apply WAF in load balancer with other AWS serivdes Like AWS certificate Manager to build whole architechture.
+
+Egress only Internet gateway - private subnet ec2 contacted with Internet through NAT gateway in public subnet
+Instead of NAT gateway in public subnet private subnet ec2 can contact directly to internet (internet gateway) using Egress only instead of NAT gateway directly through private subnet instead of public
+
+Terminate running instance unnecessarily and remove and delete other things like VPC and subnet created as it will cost you money
+
+All things like internet gateway internet and ec2 are connected using route table subnet created using CIDR subnet mask .. VPC flow logs to check attackers are attacking VPC or not
+
+Egress traffic out not in
+
+Ingress internet in not out
+
+Security gp firewall for ec2
+NACL firewall for subnet
+
+Disaster Recovery : if electricity off system off backup in multiple availability zone put and for disaster recovery take snapshot backup copy
+
+Database Migration tool  and schema conversion tool in AWS to convert MySQL to MongoDB by running a EC2 to convert in Database Migration service
+
+AWS Backup service - select services in AWS like EC2 in AWS Backup its data will be automatically backed up in ec2. Also AWS Backup service vault lock to prevent malicious delete of backups
+
+AWS application discovery service - for backup see which service to select in AWS backup which data is mapped to which service data which service and data to select for taking backup….check mapping with this service
+VMware service to run in offline on premise server setup run AWS cloud services
+
+SQS queue FIFO prevents data loss process data one by one other wait … fan out pattern
+To send data from s3 service to lambda to process use sNS subscribe to SNS topic all 3 Or multiple SQS queue data published to SNS topic via S3 when put or get object transferred copies of same data to all SQS queue as they have subscribed to the topic… same copy transferred to all SQS as subscribed to SNS topic
+
+Complex  RDS SQL queries cache using memcache, Redis and DAX part of elastic cache
+
+Blocking IP address in net
+To block IP address in VPC use NACL to disallow IP address
+Inside VPC in EC2 security group only allow is there in security group no deny so only allow non malicious IP that you want to allow
+Also you can use firewall in EC2
+WAF to block IP
+Cloudfront geo restriction to block IP
+
+Cloud formation : whole AWS architechture/ infrastructure tell to create via code … it saves cost and you can view the architechture created via code via Template whole flow chart using AWS application composer template see
+
+Define IAM role for cloudformation take IAM permission to create architechture via code
+
+AWS SES - to send email via AWS
+
+Amazon pinpoint - CRM to send advertisement to customers via SMS, email other activities
+
+AWS session Manager : ssh to ec2 securely connect to ec2 securely there are IAM permissions
+
+AWS systems manager run a single command to multiple ec2 for updating/patching multiple ec2 at once output of command for update put in cloud watch logs
+
+AWS cost explorer : how much cost of AWs sevices forecast from previous services ec2 usage per hour
+
+AWS cost anamoly service : using Machine learning detect where cost is more in AWS architechture
+
+AWS outposts - hybrid cloud on premise offline and AWS using outposts create on premise offline architechture in AWS hybrid cloud make
+
+AWS AppFlow : transfer SAAS software as a service like service now and sap data to aws
+
+AwS amplify : provide all AWS services in one place to create web and mobile apps
+
+AWS instance scheduler : Works with cloud formation whole infrastructure created with cloudformation instance scheduler checks with AWS services to start and stop to minimize cost of architechture created with cloudformation.
+
+AWS batch : unlike lambda not serverless no time limit run job and create unlimited amount of ec2 to successfully finish the job/ script how large script
+
+AWS trusted advisor : give suggestions on AWS services what to modify to increase performance.
