@@ -84,7 +84,7 @@ Route 53 DNS provider map DOmain www.example.com to IP address of EC2 instance (
 
 TTL time to live cache the domain with ec2 ip so no route53 more traffic for IP of ec2 access via domain through route53 A record cache it in browser for some time
 
-Cloudfront trigger alert for auto scaling when load increases on one server
+Cloudwatch trigger alert for auto scaling when load increases on one server
 
 CNAME in route53 for redirectring domain to some other domain pointing to an ec2 instance using alias
 
