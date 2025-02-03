@@ -1,3 +1,7 @@
+SQS is a queue for no data loss lot of data even order preserve if lost again come in queue
+
+ECS in container -- there is docker engine so whatever langauge project or OS can be put in pod/container DOcker Engine will run it. for autoscaling
+
 myapp.tcs.com for email
 
 from flask import render_template
