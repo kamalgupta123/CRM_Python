@@ -1,0 +1,108 @@
+System Design :
+--------------
+ACID - Consistent - transaction should complete if incomplete roll back no wrong value
+CAP theorem - not all attain - one remain if two server fail not linked effect consistency or availability not all three achieve together
+Consistent hashing to route to server rate limiting algos
+Consensus algorithm - message passed to each server every info given to all servers linked using message queue
+Service discovery - discover new server from a file of server ip new server come adds i cc ts ip in file in server registry for load balancer to know which server route request to
+API design - JSON return response
+Disaster recovery - Buisness continuity - Cloud
+API gateway: automatically add server on API load
+MySQL - relational link tables rollback failure bank use
+DynamoDB -NoSQL - fast - cache
+Timestamp DB - time with data entry for logs
+
+Indexes one table store index to other table …
+B tree table
+Different types of Database index is there according to performance
+Indexes put in where, join and order by columns in query to make query fast
+Indexes put in column with high cardinality with most of the column value unique no duplicate
+Indexes put composite in multiple columns single time it is storage efficient less memory take fast
+Consistency pattern - Db one write bd write in it master slave all slave db read replicas get data
+Also queue use
+Heartbeat - if multiple request failing unhealthy server
+Circuit Breaker - if any service dependent on other service and that on another service
+So, if last service fails the between service also fail
+So, for response from all 3 final output user have to wait a lot of time to get timeout since all fail
+Use circuit breaker to breaker circuit if 1st server fail and return timeout output to user faster
+Idempotency -
+Multiple times run value do not change corrupt
+If system fail while running command again system recover command run again no data change with same command
+Same command run again and again no data change
+Use unique id to identify command if command with that unique id comes again don’t accept that command no data change use unique Id
+Only allow PUT, Patch or delete while either updates so no data change or delete again and again or GET again and again don’t make data change as data is already not there and by get we are fetching same data again and again
+Don’t use POST if use post use with a queue to make value same every time or with a unique ID associate request and if same request comes with same request ID do not accept that request.
+
+Database scaling -
+Slave Read replicas attached with master DB in different availability zones so fast deliver data in nearest location
+Remove less used columns in all queries in separate table
+Vertical(RAM) and horizontal scaling
+
+Snapshot replica - version control can go back to previous snapshot/version of code server instance unlinke other backups/replica
+Latest code not present in current snapshot current code present
+Use hash key to locate different shards of database table so if one shard fail we can depend on other shards
+Disaster recovery - use cloud - multiple back computer copy if failure to handle load as backup listen heartbeat if heartbeat fail next computer load shift - failover - backup next computer load shift - failback - same unhealthy server start after sometime after fix
+Bloom filter - a key value pair set where all values if set to 1 means that key named item is already there else if it is 0 means that key item is not there using filter of key hashed with a value to check if item is already there or not
+Failover strategy of load balancer if one server fails it assign another server failover server assign another server in case it fails
+Bloom filter - hash key map with 1 and 0 where 1 indicates value is there and 0 value is not there. So it’s a data structure to lookup if value is present or not with 1 and 0 hashed with value key
+Queues - for decoupling one message multiple consume subscribe pub/sub and asynchronous put data in background
+Websocket - one time connection request if accept transfer data from client to server and server to client multiple requests two way real time chat app, multiple users edit single document
+Checksum - calculate data value before sending data and after sending data. If data value same before sending and after sending to server from client then data is not tempered/mistreated/incorrect
+Like before sending envelope sender one photo take of envelope after receiving also receiver take photo and send photo to sender then sender compare if both photo same envelope is not tempered/ mistreated and data is not incorrect
+Data value is basically checksum like sum of all bytes of data before and after sending data
+For data validation
+Microservices - sep small small api like APIs separately work less code to debug also scale independently
+UDP no sequence of data packets TCP sequence is there
+Long polling wait for data to come after request wait a lot
+Write through cache write and read new data both write and read
+Read through only read if cache miss then store only if cache miss then store in read through cache
+Trade off one thing achieve other thing trade off if performance get then other thing like scalability do not get
+Concurrency like parrallelism but in same computer with IO operations do and context switching
+Strong consistency same copy of data everywhere
+Weak consistency same copy of data somewhere
+Push means server pushing data to all clients as soon as data come like push notification and real time update
+Pull means client requesting data from server and then server sending data
+Rest is stateless everything send in request whole json body server does not store any session or store anything next time request again same json send all details regarding request server do not have anything stored so stateless everything pass in request
+RPC is a small function call in between and context switching
+In Stateful sessions are stored once logged in it remember who logged in and whatever work you will do after login will be there from next time after login for user as sesssion stored like FTP FileZilla login etc
+Serverless write code and cloud automatically create server and infra you do not need to create like in lambda
+Serverless for Rightsizing of infra like in lambda if less code write less server required if more code write more server required cloud automatically re size and save cost
+Peer to peer no central server to manage child server no teacher to share knowledge among students instead all child servers connect act as teacher and share knowledge everybody knows everything so all peers/servers connect and act as both client and server no particular server.
+
+Driving license application number : 2021300924
+And
+
+Machine learning -
+-----------------
+
+correlation inverse proportional similar PCA two variable independent highly correlated remove one same effect remove the one less correlated with target
+Churn - customers learnt business leaving it starting their own
+Pf value low best significant value important
+
+
+AWS Exam Trick - 
+----------------
+check technical word in question as per word answer exam topics use
+
+Deep learning -
+--------------
+back propagation neural network train modify weights and bias to match
+
+GitHub -
+-------
+GitHub git reset hard in console and server both reset no changes in terminal or local
+Git reset or git reset soft changes in local or terminal and not on server
+Git reset to a commit and then back to previous commit since soft changes in local can see and visual studio code changes visualise in visualise section
+Head tilde for current commit
+Caret ^ for parent commit for reset using reference
+Git reset —hard branch name for changes reset to that branch
+Commit id unique of every branch
+
+
+SQL - 
+-------
+view automatically updated as table update
+Stored procedure function like Python arguments pass create once use multiple time anywhere by calling and passing arguments
+One column value can be used with different names case statement aliasing
+Window function windows to make grouping
+Array - homogenous list - non homogenous
