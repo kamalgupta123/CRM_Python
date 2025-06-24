@@ -1,0 +1,853 @@
+Daas API Creation Steps :
+------------------------
+
+INTRODUCTION:  
+
+A REST API (Representational State Transfer Application Programming Interface) is a set of rules and conventions for building and interacting with web services. It allows different software applications to communicate with each other over the internet in a simple and standardized way.  
+
+APIs to create:  
+
+AutoSC connect history API  
+
+AutoSC Connect Metrics API  
+
+FE Contact details API  
+
+Config Information API  
+
+Preventive maintenance API  
+
+  
+
+  
+
+  
+
+DaaS admin API request form:  
+
+The DaaS Admin application is used to create and manage 'Batch Extract' and  
+
+'API' requests across multiple projects. We have completed the DaaS “Create Form” to initiate an API creation request from the BE project admin. The form has been filled out and the API request approved via the DaaS administration portal “BE admin”.  
+
+For more information about DaaS admin, follow the link: DaaS admin 
+
+ 
+
+DaaS Stage Form Link : https://us-stg-daas-admin-web.odp.ge-healthcare.net/ 
+
+ 
+
+DaaS Prod Form Link : https://daas-admin-web.odp.ge-healthcare.net/ 
+ 
+  
+
+  
+
+  
+
+AWS code-generator script running:  
+ 
+AWS console link : https://d-906793cba0.awsapps.com/start/#/?tab=accounts 
+ 
+
+After completing the DaaS “Create Project and API Form”, we successfully ran the AWS Glue Code-Generator script. Based on the type of APIs – REST, the respective AWS component files are generated and stored in a project-specific prefix under the daasapi shared S3 bucket, and finally into the GitHub repository.  
+
+  
+
+  
+
+For more information on AWS code-generator and component creation, do follow the link: AWS code-generator and component creation  
+
+  
+
+  
+
+  
+
+AWS component creation in Github by code-generator (Glue job):  
+ 
+Github Repo link : https://github.gehealthcare.com/ODP-Daas-API/myinstall 
+ 
+The code generator glue job also raises a PR to add the AWS components it created in GitHub to the AWS console by merging the PR.  
+
+  
+
+Access Required for RedShift Cluster Schemas to Enable API Functionality:  
+
+Saviynt portal link to request Access From : https://gehealthcare.saviyntcloud.com/ECMv6/request/requestHome 
+
+ 
+
+ 
+
+ 
+
+hdl_gcm_sem_view  
+
+hdl_gcm_sem_data  
+
+hdl_gcm_fnd_data  
+
+hdl_cmn_data  
+
+hdl_olr_sem_view  
+
+hdl_olr_sem_data  
+
+We encountered an issue with schema access, for which we raised a request with the respective team, Savyint portal, and CloudOps team. The issue has since been resolved.  
+
+   
+
+  
+
+AWS component creation:  
+
+After filling form in DaaS administration portal and successful code-generator script running, AWS components have been created.  
+
+  
+
+Resolving APIs running issue in AWS:  
+
+Some APIs had issues, which we addressed by coordinating with the respective teams. We resolved the problems by connecting with the cloudops team and with the query team.  
+
+  
+
+Schema missing content issue resolve:  
+
+A few schemas did not contain the required elements and were unable to execute. We connected with the schema owner and resolved the issue by creating the missing contents (tables).  
+
+  
+
+  
+
+NPSSO secret creation:  
+ 
+ 
+NPSSO request form link : https://app.sc.ge.com/workflows/initiate/2114884 
+ 
+ 
+
+For AWS Secret Manager NPSSO secret creation, we have filled SupportCentral Workflow Request form and connected with the respective approver to get the NPSSO secret for AWS secret manager 
+
+  
+
+Test API in API gateway (AWS):  
+
+We have tested the APIs in API gateway (AWS) and checked the desired output.  
+
+For more information about the API gateway, follow the link: API gateway  
+
+ 
+
+Go to test section in API Gateway to test the APIs 
+
+ 
+
+  
+
+  
+
+  
+
+Resolving API Gateway Issues: Updating Queries and Secrets in AWS:   
+
+After encountering issues while testing the API in API Gateway, we cloned the GitHub repository of the dev (innovation) branch to a local repository. We then modified the openapispec.json file with updated API queries and new secret credentials from the secret manager. A PR was raised in a new branch from the dev branch, and after merging the PR, all queries and RedShift secrets were updated in AWS.  
+
+  
+
+Successfully run API in Postman:  
+
+Finally, we tested all the APIs in Postman to ensure they meet the requirements. 
+
+ 
+
+  Postman Collection Link: https://gehealthcare.box.com/s/sokz8zfvkfpxkaoybz6wayiw4pmmmfqx 
+
+ 
+ 
+
+12. 
+ 
+
+  
+
+13. Integrating OAuth 2.0 and APIGEE for 5 APIs:  
+
+Obtain the APIGEE URLs/endpoints for 5 APIs from the APIGEE team to integrate OAuth 2.0 for security and to utilize APIGEE for additional purposes in all 5 APIs.  
+
+For this we shared the requirement sheet with the APIGEE team.  
+
+ 
+
+ 
+
+14. To enhance the functionality of the FFA API development process, the following updates have been made: 
+
+  
+
+14.  Modifications As Per Customer:   
+
+   - The adjustments were implemented in the daasapi-shared-responder-myinstall-test lambda layer.   
+ 
+ - File Updates: Changes were made in queryPrepare.py and eventBuilderClass.py.   
+
+ - In eventBuilderClass.py, the function set_filter_string_pg was updated to handle specific conditions for APIs like auto_sc_detail or history. A condition was added to set the filter string with a date range (start_tim and end_tim) as seperate parameters unlike DaaS Framework API.   
+
+ - For adding request body with start tim and end time as seperate parameter in postman as a range, modification is done in lambda layer daasapi-shared-responder-myinstall-test 
+ 
+- The code for modification of start_tim and end_tim as seperate field for range, is made In eventBuilderClass.py, modification is done set_filter_string_pg function. if the api is auto sc detail or history, there is one condition for those api’s. In that condition it sets filter string with the date range within start and end tim using string concatenation “>= start_tim and <= end_tim” 
+
+  
+
+2. Query Modifications: 
+
+   - Updates in `queryPrepare.py` included modifications to the `getSyncPGquery` function.   
+
+   - Using Python's `replace()` function for string concatenation, the query string is modified dynamically.   
+
+Using replace the where is added inside of the query and in where CAST(‘start_tim as Date) is added using string replace and concatenation unlike DaaS API Framework. 
+
+   - Pagination is implemented using `row_num` in `auto_sc_details` queries, and appended the start and rows sent by user in postman paramters to row_num string for pagination, using string concatenation. 
+
+  
+
+3. Key Functional Updates: 
+
+   - The function `set_filter_string_pg(self)` now handles filter strings with conditional logic for `start_tim` and `end_tim` as seperate parameters  depicting range unlike DaaS Framework. 
+
+   - The function `getSyncPGquery(requestObj, ddbMetaObj)` constructs the SQL query string, dynamically applying filters, pagination, and handling date ranges using `CAST` for proper formatting. Where condition is placed inside with CAST for start_tim and end_tim unlike DaaS Framework. 
+
+   - Pagination logic ensures rows are efficiently fetched using `row_num BETWEEN` with user-requested offsets and limits from postman using string concatenation unlike DaaS Framework. 
+
+ 
+
+def getSyncPGquery(requestObj,ddbMetaObj): 
+
+     
+
+    response_hard_limit     =   ddbMetaObj.get_sql_stmt_limit() 
+
+    default_pagination_value=   ddbMetaObj.get_pagination_value() 
+
+    default_offset_value    =   ddbMetaObj.get_offset_value() 
+
+    base_query              =   ddbMetaObj.get_sql_stmt() 
+
+    order_by_phrase         =   ddbMetaObj.get_order_by_phrase()  
+
+     
+
+     
+
+    user_requested_pagination              =   requestObj.get_pagination_value() if requestObj.get_pagination_value()!="" else default_pagination_value 
+
+    user_requested_offset                  =   requestObj.get_offset()           if requestObj.get_offset()!=""           else default_offset_value 
+
+    user_requested_columns                 =   requestObj.get_column_string_pg()    if requestObj.get_column_string_pg()!=""    else "tbl.*" 
+
+    user_filters                           =   requestObj.get_filter_string_pg()     
+
+    user_time_range                        =   requestObj.get_range_string_pg() 
+
+ 
+
+     
+
+    if(int(user_requested_pagination) > int(response_hard_limit)): 
+
+        user_requested_pagination=response_hard_limit 
+
+        print(f"Pagination value should be less than or equal to {response_hard_limit} hence changing the value and running the query") 
+
+     
+
+    modified_query="" 
+
+     
+
+    # result_string = "" 
+
+     
+
+    # index = user_filters.find("and") 
+
+     
+
+    #to get the record count of only system id not the date range 
+
+    # if index != -1: 
+
+    #     result_string = user_filters[:index].strip() 
+
+    # else: 
+
+    #     result_string = user_filters.strip() 
+
+         
+
+    pagination_phrase = "row_num BETWEEN " + str(user_requested_offset) + " AND " + str(user_requested_pagination) + " order by " + str(order_by_phrase) 
+
+     
+
+     
+
+    # trimmed_filter = result_string.replace("tbl.", "s1.") 
+
+     
+
+    #to get result of system id and for that date range 
+
+    trimmed_user_filters = user_filters.replace("tbl.", "s1.").replace("s1.start_tim", "CAST(s1.start_tim AS DATE)").replace("s1.end_tim", "CAST(s1.start_tim AS DATE)") 
+
+     
+
+    sql_query_with_where = base_query.replace("{where}", "and " + trimmed_user_filters.strip()) 
+
+     
+
+    total_records = """(select COUNT(1)   
+
+FROM 
+
+"hdl_gcm_sem_view"."srv_machn_data_reqst_f_v" s1, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_typ_d_v" s2, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_defn_d_v" s3, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_cd_d_v" s4 
+
+WHERE 
+
+   (s4."confg_cd_id" = s1."confg_cd_id") and s1.asc_regn=s4.asc_regn 
+
+   AND (s1."requst_defn_id" = s3."reqst_defn_id") and s1.asc_regn=s3.asc_regn 
+
+   AND (s3."reqst_typ_id" = s2."reqst_typ_id") and s2.asc_regn=s3.asc_regn 
+
+and """  +  trimmed_user_filters +  """) as total_records""" 
+
+                         
+
+    sql_query_with_where = sql_query_with_where.replace("{total_records}", total_records) 
+
+ 
+
+     
+
+    if(user_filters=="" and user_time_range==""): 
+
+        modified_query = base_query  + " where " + pagination_phrase 
+
+     
+
+    elif(user_filters==""): 
+
+        modified_query = base_query  +  " where " + user_time_range  +  " and "  +  pagination_phrase 
+
+     
+
+    elif(user_time_range==""): 
+
+        modified_query = sql_query_with_where  + " where " + pagination_phrase 
+
+         
+
+    else: 
+
+        modified_query = sql_query_with_where   +  " where " + user_time_range  +  " and "  +  pagination_phrase 
+
+     
+
+    return modified_query 
+
+ 
+
+ 
+
+def set_filter_string_pg(self): 
+
+        try: 
+
+            if(self.user_input_dict.get("filters")): 
+
+             
+
+                filter_string_list=[] 
+
+                filter_string="" 
+
+                 
+
+                filter_dict=self.user_input_dict.get("filters") 
+
+                 
+
+                for key in filter_dict.keys(): 
+
+                    if("," in str(filter_dict[key])): 
+
+                            filter_string_list.append("tbl."+key+" in "+str(tuple(map(convert_string,filter_dict[key].split(','))))) 
+
+                    else: 
+
+                        if (self.api_name == "api|autosc_cnnct_history" or self.api_name == "api|autosc_connect_details") and key == "start_tim": 
+
+                            filter_string_list.append("tbl."+ key + " >=" + ("'"+ filter_dict[key] + "'" if isinstance(filter_dict[key],str) else filter_dict[key] ) ) 
+
+                        elif (self.api_name == "api|autosc_cnnct_history" or self.api_name == "api|autosc_connect_details") and key == "end_tim": 
+
+                            filter_string_list.append("tbl."+ key + " <=" + ("'"+ filter_dict[key] + "'" if isinstance(filter_dict[key],str) else filter_dict[key] ) ) 
+
+                        else: 
+
+                            filter_string_list.append("tbl."+ key + "=" + ("'"+ filter_dict[key] + "'" if isinstance(filter_dict[key],str) else filter_dict[key] ) ) 
+
+                            # filter_string_list.append("row_num BETWEEN "+self.offset+" AND " + self.pagination_value) 
+
+                         
+
+                filter_string=(" and ").join(filter_string_list) 
+
+                 
+
+                print(filter_string) 
+
+             
+
+                self.filter_string_pg = filter_string 
+
+ 
+
+Queries Being Used in API : 
+ 
+FE Contact Details: 
+ 
+ 
+ 
+ 
+
+select 
+
+    distinct s1.systm_id as SYSTM_ID, 
+
+    s1.update_dtm as update_dtm, 
+
+    s1.first_nam as primary_first_name, 
+
+    s1.last_nam as primary_last_name, 
+
+    s1.user_id as primary_sso, 
+
+    split_part(split_part(s1.lev1_mangr_nam, 
+
+    ' - ', 
+
+    2), 
+
+    ' ', 
+
+    1) as level1_manager_first_name, 
+
+    split_part(split_part(s1.lev1_mangr_nam, 
+
+    ' - ', 
+
+    2), 
+
+    ' ', 
+
+    2) as level1_manager_last_name, 
+
+    split_part(split_part(s1.lev1_mangr_nam, 
+
+    ' - ', 
+
+    1), 
+
+    '_', 
+
+    2) as level1_manager_sso, 
+
+    split_part(split_part(s1.top_levl_mangr_nam, 
+
+    ' - ', 
+
+    2), 
+
+    ' ', 
+
+    1) as top_level_manager_first_name, 
+
+    split_part(split_part(s1.top_levl_mangr_nam, 
+
+    ' - ', 
+
+    2), 
+
+    ' ', 
+
+    2) as top_level_manager_last_name, 
+
+    split_part(split_part(s1.top_levl_mangr_nam, 
+
+    ' - ', 
+
+    1), 
+
+    '_', 
+
+    2) as top_level_manager_sso  
+
+from 
+
+    hdl_gcm_sem_view.srv_cos_ast_cnvty_snpst_f_v S1 
+
+WHERE snpsht_perd_wk = ( 
+
+    SELECT  MAX(SNPSHT_PERD_WK) 
+
+    FROM hdl_gcm_sem_view.SRV_COS_AST_CNVTY_SNPST_F_V ) 
+
+ 
+ 
+Auto SC Connect History: 
+
+ 
+
+    select   
+
+        s1."systm_id" as "SYSTM_ID", 
+
+        s1."start_tim"::date, 
+
+        s4."confg_cd_nam", 
+
+        count(1) 
+
+    FROM 
+
+        "hdl_gcm_sem_view"."srv_machn_data_reqst_f_v" s1 
+
+        join "hdl_gcm_sem_view"."srv_machn_confg_reqst_typ_d_v" s2  
+
+        on 1=1 
+
+        join "hdl_gcm_sem_view"."srv_machn_confg_reqst_defn_d_v" s3 
+
+        on (s1."requst_defn_id" = s3."reqst_defn_id" and s1.asc_regn=s3.asc_regn) 
+
+        AND (s3."reqst_typ_id" = s2."reqst_typ_id" and s2.asc_regn=s3.asc_regn) 
+
+        join "hdl_gcm_sem_view"."srv_machn_confg_cd_d_v" s4 
+
+        on (s4."confg_cd_id" = s1."confg_cd_id" and s1.asc_regn=s4.asc_regn) 
+
+  where  
+
+        s1."systm_id" = '609652CTREV' 
+
+and cast(s1."start_tim" as DATE) >= '2024-06-16' 
+
+and cast(s1."start_tim" as DATE) <= '2024-06-16' 
+
+group by 
+
+        "systm_id", 
+
+        cast("start_tim" as DATE), 
+
+        "confg_cd_nam" 
+
+ 
+
+ 
+
+Auto SC Connect Details: 
+
+ 
+
+select * from (select 
+
+(select COUNT(1)   
+
+FROM 
+
+"hdl_gcm_sem_view"."srv_machn_data_reqst_f_v" s1, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_typ_d_v" s2, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_defn_d_v" s3, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_cd_d_v" s4 
+
+WHERE 
+
+   (s4."confg_cd_id" = s1."confg_cd_id") and s1.asc_regn=s4.asc_regn 
+
+   AND (s1."requst_defn_id" = s3."reqst_defn_id") and s1.asc_regn=s3.asc_regn 
+
+   AND (s3."reqst_typ_id" = s2."reqst_typ_id") and s2.asc_regn=s3.asc_regn 
+
+and     s1."systm_id" = '609652CTREV' 
+
+    and cast(s1."start_tim" as DATE) >= '2024-06-16' 
+
+    and cast(s1."start_tim" as DATE) <= '2024-06-16' 
+
+) as total_records, 
+
+count(*) over (partition by main_data."SYSTMID","Start Time"::date)  as record_count, 
+
+main_data."SYSTMID"  AS SYSTM_ID, 
+
+main_data."Request Type"  AS REQSTTYPNAM, 
+
+main_data."Request Description"  as REQSTDESC, 
+
+main_data."Code Name" as CONFGCDNAM, 
+
+main_data."Code Description" as CONFGCDDESC, 
+
+main_data."Start Time" as start_tim, 
+
+Row_Number() OVER (order by "Start Time") AS row_num 
+
+from 
+
+( 
+
+select 
+
+   s1."systm_id" AS "SYSTMID", 
+
+   s2."reqst_typ_nam" AS "Request Type", 
+
+   s3."reqst_desc" AS "Request Description", 
+
+   s4."confg_cd_nam" AS "Code Name", 
+
+   s4."confg_cd_desc" AS "Code Description", 
+
+    s1."start_tim" AS "Start Time" 
+
+FROM 
+
+"hdl_gcm_sem_view"."srv_machn_data_reqst_f_v" s1, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_typ_d_v" s2, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_reqst_defn_d_v" s3, 
+
+"hdl_gcm_sem_view"."srv_machn_confg_cd_d_v" s4 
+
+WHERE 
+
+   (s4."confg_cd_id" = s1."confg_cd_id") and s1.asc_regn=s4.asc_regn 
+
+   AND (s1."requst_defn_id" = s3."reqst_defn_id") and s1.asc_regn=s3.asc_regn 
+
+   AND (s3."reqst_typ_id" = s2."reqst_typ_id") and s2.asc_regn=s3.asc_regn 
+
+and s1."systm_id" = '609652CTREV' 
+
+    and cast(s1."start_tim" as DATE) >= '2024-06-16' 
+
+    and cast(s1."start_tim" as DATE) <= '2024-06-16' 
+
+)main_data 
+
+) 
+
+ 
+
+ 
+
+ 
+
+  
+
+Config Information: 
+
+ 
+
+SELECT   
+
+s1.systm_id  AS SYSTM_ID 
+
+,CASE WHEN s1.IB_CONCTD = 'Connected' THEN 'Registered'  ELSE 'Not Registered' END  AS BB_Registered 
+
+,DATEDIFF(day,CASE WHEN DATE(s1.LAST_POL_DT) is null THEN DATE(s1.mdr_mm3_gcm_max_recvd_dt) else DATE(s1.LAST_POL_DT) end,s1.load_dtm )   AS Insite2days 
+
+,CASE WHEN s2.CONCT_PLATFRM IN ('InSite 1','InSite 1 - IIP') THEN 'Insite1' 
+
+WHEN s2.CONCT_PLATFRM IN ('Mixed - check service docs') THEN 'Insite1 or Insite2' 
+
+WHEN s2.CONCT_PLATFRM IN ('InSite - RSVP','InSite 2 - ExC') THEN 'Insite2'  ELSE s2.CONCT_PLATFRM END   AS Insite_Conn_Platform 
+
+,CASE WHEN position('INSITE2' IN UPPER(Insite_Conn_Platform)) >= 1 THEN 'Y'  ELSE 'N' END   AS Insite_Y 
+
+,DATEDIFF(day,CASE WHEN DATE(s1.LAST_POL_DT) is null THEN DATE(s1.mdr_mm3_gcm_max_recvd_dt) else DATE(s1.LAST_POL_DT) end,s1.load_dtm )   AS Insite2days 
+
+,-- Define Ping_Status  
+
+CASE WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_ping_zabbix_dt,s1.load_dtm) <= 10 THEN 'Pass' WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_ping_zabbix_dt,s1.load_dtm) > 10 THEN 'Fail' else 'NA' end AS Ping_Status 
+
+,s1.last_ping_zabbix_dt                                                                                                                   AS LASTPINGZABBIXDT 
+
+,-- Define SSH_Status  
+
+CASE WHEN s1.last_ssh_zabbix_dt is not null AND s1.last_telnt_zabbix_dt is null THEN 'NA' WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_ssh_zabbix_dt,s1.load_dtm) <= 10 THEN 'Pass' WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_ssh_zabbix_dt,s1.load_dtm) > 10 THEN 'Fail' else 'NA' end AS SSH_Status       
+
+,s1.last_ssh_zabbix_dt                                                                                                                    AS LASTSSHZABBIXDT 
+
+,-- Define Telnet_Status  
+
+CASE WHEN s1.last_telnt_zabbix_dt is not null AND s1.last_ssh_zabbix_dt is null THEN 'NA' WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_telnt_zabbix_dt,s1.load_dtm) <= 10 THEN 'Pass' WHEN s1.chkout_dt_rsvp is null AND DATEDIFF(day,s1.last_check_zabbix_dt,s1.load_dtm) <= 10 AND DATEDIFF(day,s1.last_telnt_zabbix_dt,s1.load_dtm) > 10 THEN 'Fail' else 'NA' end AS Telnet_Status 
+
+,-- Define Insite_1_Status  
+
+CASE WHEN (s1.CHKOUT_DT_RSVP is null AND (SSH_Status = 'Pass' or Telnet_Status = 'Pass')) THEN 'Pass' WHEN (s1.CHKOUT_DT_RSVP is null AND (SSH_Status = 'Fail' or Telnet_Status = 'Fail' or Ping_Status = 'Fail')) THEN 'Fail' else 'NA' end AS Insite_1_Status 
+
+,-- Define Insite_2_Status  
+
+CASE WHEN (Insite2days <= 10 AND BB_Registered = 'Registered' AND Insite_Y = 'Y') THEN 'Pass' WHEN (Insite2days > 10 AND BB_Registered = 'Registered' AND Insite_Y = 'Y') THEN 'Fail' else 'NA' end AS Insite_2_Status 
+
+,s1.last_check_zabbix_dt                                            
+
+,s1.last_telnt_zabbix_dt  AS LASTTELNTZABBIXDT 
+
+,s1.chkout_dt AS CHKOUTDT,s1.instl_dt  AS INSTLDT        
+
+,CASE WHEN s1.IBIS_FLG = 'Y' THEN 'Yes'  ELSE 'No' END                                                                                    AS Sweep_Attempted 
+
+,DateDiff('day',AUTOSC_ONWATCH_MAX_RECVD_DT,current_date)                                                                                AS OnWatch_Date 
+
+,DateDiff('day',AUTOSC_IBIS_MAX_RECVD_DT,current_date)                                                                                    AS IBIS_Date 
+
+,DateDiff('day',MDR_ONWATCH_MAX_RECVD_DT,current_date)                                                                                    AS MDR_Date 
+
+,-- Define Online  
+
+CASE WHEN (Insite_1_Status = 'Pass' AND Insite_2_Status = 'Pass') THEN 'Y' else 'N' end               AS Online 
+
+,CASE WHEN OnWatch_Date IS NULL THEN 'No Data' 
+
+WHEN OnWatch_Date >= 0 AND OnWatch_Date <= 6 THEN 'Pass' 
+
+WHEN OnWatch_Date >= 7 AND OnWatch_Date <= 10 THEN 'Warning' 
+
+WHEN OnWatch_Date > 10 THEN 'Fail' END                                                                                              AS OnWatch_Prodiag_Status 
+
+,CASE WHEN IBIS_Date is NULL THEN 'No Data' 
+
+WHEN IBIS_Date >= 0 AND IBIS_Date <= 6 THEN 'Pass' 
+
+WHEN IBIS_Date >= 7 AND IBIS_Date <= 10 THEN 'Warning' 
+
+WHEN IBIS_Date > 10 THEN 'Fail' END                                                                                                 AS IBIS_SystemHealthSweep_Status 
+
+,CASE WHEN MDR_Date > 10 THEN 'Fail' 
+
+WHEN MDR_Date <= 4 THEN 'Pass' 
+
+WHEN MDR_Date <= 10 THEN 'Warning' 
+
+WHEN MDR_Date is null THEN 'No Data' END                                                                                            AS Magnet_MDR_Status 
+
+,CASE WHEN (OnWatch_Prodiag_Status = NULL) AND (Magnet_MDR_Status = NULL) AND (IBIS_SystemHealthSweep_Status = NULL) THEN 'No Data' 
+
+WHEN (OnWatch_Prodiag_Status = 'Fail') OR (Magnet_MDR_Status = 'Fail') OR (IBIS_SystemHealthSweep_Status = 'Fail') THEN 'Fail'  ELSE 'Pass' END AS Master_Connectivity_Status 
+
+,s1.autosc_onwatch_max_recvd_dt                                                                                                           AS AUTOSCONWATCHMAXRECVDDT 
+
+,s1.autosc_ibis_max_recvd_dt                                                                                                              AS AUTOSCIBISMAXRECVDDT 
+
+,s1.mdr_onwatch_max_recvd_dt                                                                                                              AS MDRONWATCHMAXRECVDDT 
+
+FROM 
+
+(SELECT  * 
+
+FROM hdl_gcm_sem_view.srv_cos_ast_cnvty_snpst_f_v 
+
+WHERE  snpsht_perd_wk = ( 
+
+SELECT  MAX(SNPSHT_PERD_WK) 
+
+FROM hdl_gcm_sem_view.SRV_COS_AST_CNVTY_SNPST_F_V ) AND (physcl_cust_nam NOT IN ('CUSTOMER SERVICE CENTER', 'GE MEDICAL SYSTEMS GLOBAL HEADQUARTERS', 'GE HEALTHCARE INSTITUTE', 'SEKO LOGISTICS', 'GE CORPORATE R & D CENTER', 'SOUND') or physcl_cust_nam is null))  s1 
+
+LEFT JOIN 
+
+( 
+
+SELECT  comptbl_flg 
+
+,conct_platfrm 
+
+,globl_focs_flg 
+
+,ipm_comptbl_flg 
+
+,PSI_CD 
+
+FROM hdl_gcm_sem_view.SRV_COS_PSI_CD_LST_D_V 
+
+) s2 
+
+ON collate((s1.PSI_CD), 'case_insensitive') = collate((s2.PSI_CD), 'case_insensitive') 
+
+where s1.systm_id <> <system_id> 
+
+ 
+
+ 
+
+ 
+
+Preventive Maintenance: 
+ 
+
+select 
+
+    s1.source_name as SOURCENAME 
+
+       , 
+
+    s1.system_id as SYSTM_ID 
+
+       , 
+
+    coalesce(cast(MAX(s1.last_pm_sr_completed_date) as VARCHAR), 
+
+    'No Data') as PM_Date 
+
+       , 
+
+    coalesce(MAX(s1.last_pm_sr_type), 
+
+    'NoData') as Last_PM_Schedule_type 
+
+       , 
+
+    coalesce(MAX(s1.pm_sequence_number), 
+
+    'No Data') as Last_Sequence_Number 
+
+       , 
+
+    coalesce(MAX(s1.level_of_service), 
+
+    'No Data') as Level_of_Service 
+
+from 
+
+    hdl_olr_sem_view.sr_pm_details_v s1 
+
+group by 
+
+    1 
+
+         , 
+
+    2 
