@@ -1,0 +1,99 @@
+API to fetch Order Data
+
+Technical Details: Please find below Technical Details of PDx Big Rock API Development:
+
+DaaS API Filled Requirement Sheet : ODP DaaS Requirements - ISC API 1.xlsx
+
+APIGEE Filled Requirement Sheet : PDx Big Rock API requirement ODPDaaS-APIGEE_Requirement_Sheet.xlsx
+
+Schemas/Tables/views used : biosapeu_fr.vbep and biosapeu_fr.vbap from ETL Innovation are migrated/data shared into  hdl_pdx_sem_view.isc_self_ah_orders_api_f_v in report alpha cluster for API development.
+
+So, Table to be used in report alpha cluster for API development is:
+
+hdl_pdx_sem_view.isc_self_ah_orders_api_f_v
+
+Take schema access of above schema from below saviynt portal:
+
+https://gehealthcare.saviyntcloud.com/ECMv6/request/requestHome 
+
+SQL query to be used in API : 
+
+
+
+select production_date, material, rejection_reason, total_sales_orders, total_scheduled_qty, refreshed_at 
+from 
+    hdl_pdx_sem_view.isc_self_ah_orders_api_f_v
+    -- API Params here
+    where production_date BETWEEN TO_CHAR(CURRENT_DATE, 'YYYYMMDD') AND TO_CHAR(CURRENT_DATE + INTERVAL '7' DAY, 'YYYYMMDD') --start/end date in YYYYMMDD format
+    and material in ('1186529'); -- list of SKUs - multiple entries possible
+ 
+
+Please find below PDx Big Rock API Development activity completed till now:
+
+Got New Project Requirement for PDx Big Rock Flyrcado API
+
+New Project Name: PDx_Big_Rock_Flyrcado
+
+New API Name Under New Project: PDx_ISC_AH_OrderData
+
+For new project API, I created below Confluence Page, User Stories in Rally by replacing projectname in old pages and stories
+
+US209185: [DaaS] Login/service roles - PDXBigRockFlyrcado - Innovation
+
+US209191:  [DaaS] Login/service roles - PDXBigRockFlyrcado - Production
+
+US209192: [DaaS] CICD Pipeline for PDXBigRockFlyrcado API (Innovation & Prod)
+
+PDx- Big Rock: Vizamyl & Flurpiridaz Growth Acceleration IT Work  - API Role tag approvals
+
+Confluence page and User stories created for AWS roles creation for new project along with GitHUB repository creation.
+
+Got below New NP ID created by Raju Anand for this new API project
+
+NPID : NP700008655
+
+Missing Schema issue in Report Alpha: In ETL Innovation schema was there but in Report Alpha Cluster it was not there, we created schema in Report Alpha. We connected with the team and resolved the issue by creating the missing schema (tables) in Report Alpha Cluster
+
+Got Access Required for RedShift Report Alpha Cluster Schemas to Enable API Functionality. Saviynt portal link I requested Access From : https://gehealthcare.saviyntcloud.com/ECMv6/request/requestHome 
+
+Created below NPSSO Workflow Request using new NP Ids for schema provided
+
+https://buildsmart.capgemini.com/workflows/request/14109978434
+
+https://buildsmart.capgemini.com/workflows/request/14110111921
+
+Filled below APIGEE Requirement Sheet
+
+PDx Big Rock API requirement ODPDaaS-APIGEE_Requirement_Sheet.xlsx
+
+Got Shared S3 bucket access for running codegenerator script by raising emails and getting approval from bucket owner in email.
+
+Joined below github repository for new API Project.
+
+GitHUB Repo Link : https://github.gehealthcare.com/ODP-Daas-API/pdxbigrockflyrcado
+
+created new and joined below AD group for new project.
+
+SCIM_gehc-aws-odp-us-prod-pdxbigrockflyrcado-user
+
+SCIM_gehc-aws-odp-us-innovation-pdxbigrockflyrcado-user
+
+Filled below DaaS Frontend Form and created project with name pdxbigrockflyrcado
+
+About DaaS admin API request form:
+The DaaS Admin application is used to create and manage 'Batch Extract' and
+'API' requests across multiple projects. We have completed the DaaS “Create
+Form” to initiate an API creation request from the BE project admin. The form has
+been filled out and the API request approved via the DaaS administration portal
+“BE admin”.
+For more information about DaaS admin, follow the link: DaaS admin
+DaaS Stage Form Link : https://us-stg-daas-admin-web.odp.ge-
+Health Insurance Plans & Quotes | HealthCare.com 
+DaaS Prod Form Link : https://daas-admin-web.odp.ge-healthcare.net/
+
+ 
+
+API Form Filling under project pdxbigrockflyrcado is left and API Testing and checking and modifying code as per API Testing and APIGEE work in both prod and innovation is left.
+
+Using User Stories and Confluence page created for the project, CICD work is completed and GitHUB repository has been created.
+Also, All AWS roles along with API Gateway APIs and other components are created by CloudOps Team. I have already shared API Gateway API id’s with CICD Team.
