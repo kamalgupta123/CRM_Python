@@ -1,0 +1,289 @@
+Hi Radius Batch Extracts Development Process 
+
+ 
+Project Architechture : Batch Extract Architechture 
+ 
+Requirement Templates : 
+ODP DaaS Requirements - Supplementary_Japan.xlsx 
+ODP DaaS Requirements - Customer_Other_Regions.xlsx 
+ODP DaaS Requirements - Customer_Japan.xlsx 
+ODP DaaS Requirements - Customer_India.xlsx 
+ODP DaaS Requirements - Supplementary_India.xlsx 
+ODP DaaS Requirements - Supplementary_Anz.xlsx 
+
+ODP DaaS Requirements - Supplementary_Emea.xlsx 
+
+ODP DaaS Requirements - Supplementary_Hongkong.xlsx 
+
+ODP DaaS Requirements - Supplementary_Taiwan.xlsx 
+
+ODP DaaS Requirements - HCS China_Final (1).xlsx 
+
+ODP DaaS Requirements - APAC Inbound_Final (1).xlsx 
+
+ODP DaaS Requirements - EMEA Inbound_Final (1).xlsx 
+
+ODP DaaS Requirements - Cash_Final (1).xlsx 
+
+ 
+ 
+Batch Extract Names : 
+Supplementary_Japan 
+Customer_Other_Regions 
+Customer_Japan 
+Customer_India 
+Supplementary_India 
+HRC_AR_SUPPLMENTARY_TAIWAN_F_V 
+HRC_AR_SUPPLMENTARY_HONGKONG_F_V 
+HRC_AR_SUPPLMENTARY_ANZ_F_V 
+HRC_AR_SUPPLMENTARY_EMEA_F_V 
+APAC_Inbound_Final 
+EMEA_Inbound_Final 
+Cash_Final 
+HCS_China_Final 
+
+ 
+
+ 
+  
+
+Environment Name : Development(NPROD) and Production(PROD) 
+
+Raised Redshift Cluster Schema access for running batch extract queries 
+
+1.1 Redshift Dev Cluster Name : GEHC Redshift US-NPROD-Report-Finance-db 
+1.2 Raised below schema access under RedShift Dev Cluster “GEHC Redshift US-NPROD-Report-Finance-db"  in gehealthcare saviynt portal: 
+	1.2.1 gehc_data_hdl_sam_sem_view_alpha_ext_looker 
+	1.2.2 gehc_data_hdl_fin_srv_sem_view_looker 
+	1.2.3 gehc_data_hdl_fin_srv_rep_view_looker 
+
+1.2.4 gehc_data_hdl_fin_ar_rep_view_looker 
+
+1.2.5 gehc_data_hdl_fin_ar_sem_view_looker 
+
+1.2.6 gehc_data_hdl_cmn_view_alpha_ext_looker 
+
+1.2.7 gehc_data_hdl_fin_srv_sem_data_looker 
+
+1.2.8 gehc_data_hdl_cmn_view_alpha_ext_looker 
+
+1.2.9 gehc_data_hdl_fin_ar_rep_view_looker 
+
+1.2.10 gehc_data_salesforce_fr_alpha_ext_looker 
+ 
+Picture 
+ 
+
+Raised NPSSO Request for batch extract secret for all the Redshift schema mentioned above using  gehealthcare support central form  
+ 
+NPSSO Form link to fill to create NPSSO request :  https://app.sc.ge.com/workflows/initiate/2114884 
+ 
+NP ID : NP700001036 
+Request Sample Screenshot Below :  
+          Picture 
+
+ 
+
+Raised GitHUB Repository access for HI Radius Batch Extract 
+ 
+Steps to raise GITHUB Repo Access: 
+
+raise manual ritm request: Pulse Manual RITM 
+
+application name for manual ritm : @odp cicd dev team 
+
+raise workflow request : https://app.sc.ge.com/workflows/initiate/914536 
+ 
+raise email for access to cicd team for repo access : email id : health_odp_cicd_dev_team@ge.com 
+ 
+GITHUB REPO LINK WHOSE ACCESS IS TO BE TAKEN: arcollections_Finance  
+ 
+Picture 
+
+ 
+
+Raised AWS access for NPROD and PROD AWS role: 
+ 
+Use below link to take AWS access :  
+Steps to access GEHC AWS Console  
+ 
+Take below AWS role access: 
+SCIM_gehc-aws-odp-fin-prod-hc-sdaasbe-dev-user 
+SCIM_gehc-aws-odp-fin-nprod-hc-sdaasbe-dev-user 
+ 
+AWS portal link:  AWS console access link 
+ 
+Picture 
+ 
+How to Develop the Batch Extracts after taking all the above accesses					 
+
+As the project is already created first clone the repository in your local using git clone command, and you can check the project code in the visual studio code after it. 
+ 
+Picture 
+
+Now pick the Batch Extract SQL Queries one by one from 6 Requirement Templates Shared  at the start of this document and test those SQL queries in DBeaver. 
+ 
+ 
+Picture 
+if the SQL queries run successfully in DBeaver and return response then go ahead and add these batch extract in code present in visual studio code. 
+
+ 
+
+In visual studio code in terminal type following commands: 
+git fetch origin – to get latest code from remote server 
+
+git reset –hard origin/dev -- for innovation/nprod 
+
+git reset –hard origin/master --- for production/prod 
+
+ 
+
+These two commands will get latest code from remote server 
+
+ 
+
+Now, to add your changes create a new branch and add your changes there which you can merge later using Pull Request to integrate your new branch code in dev/production. 
+ 
+for dev the new branch name to create for pull request: minor_myinstall from dev branch checkout 
+
+For prod the new branch name to create for pull request : major_myinstall from master branch checkout 
+ 
+Now start making modifications in code. 
+
+ 
+
+In code, go to config_2.json in Config folder in DynamoDB folder and add JSON for each Batch Extract. 
+ 
+Copy old json already present and paste it at end for new batch extract and modify the following in JSON at end for new batch Extract : 
+ 
+Base SK : Extract Name 
+Prefix: S3_bucketname/foldername_inside_bucket 
+Retention days: 90 as per requirement 
+
+Compression: na 
+
+Query_0: Contains SQL query 
+Archival_Flag : Y to put file in glacier archive 
+
+Extract_suffix : to add timestamp in extract name use value as extract_name_YYYY_MM_DD 
+
+Extract Name : Extract Name 
+
+ 
+
+Now copy old glue config folder files of old batch extract paste in same folder rename file with new batch extract name 
+
+Replace batch extract name everywhere inside file 
+Environment name should be nprod in development 
+
+And prod in production 
+
+ 
+
+Now copy old step function config files and paste in same folder rename file with new batch extract name 
+Also inside the Step function config file put new extract name 
+
+And also update new glue job name of respective batch extract in step function config file jobname key value. 
+
+ 
+
+Now save the files use below commands in VSCode Terminal 
+
+Git status 
+
+Git add . 
+
+Git commit –m “Added Batch Extracts” 
+
+Git push origin minor_myinstall/major_myinstall 
+
+ 
+
+Now go to github repo create a pull request and merge with dev/master as per requirement or environment working on. 
+
+After pull request merges test step function in AWS after you receive CI/CD email. 
+
+ 
+NOTE: Change in code in PROD environment in glue script or anywhere is instead of NPROD it will be PROD so, replace NPROD with PROD 
+ 
+ 
+
+ 
+
+STEP FUNCTIONS CREATED AND TEST SUCCESS SCREENSHOTS 
+
+ 
+1. Supplementary India 
+
+Picture 
+
+2. Customer India 
+Picture 
+
+3. Customer Japan 
+Picture 
+4. Customer Other Regions 
+Picture 
+
+5. Supplementary Japan 
+ 
+Picture 
+6. HRC_AR_SUPPLMENTARY_TAIWAN_F_V 
+ 
+Picture 
+ 
+7. HRC_AR_SUPPLMENTARY_HONGKONG_F_V 
+ 
+Picture 
+
+8. HRC_AR_SUPPLMENTARY_ANZ_F_V 
+ 
+Picture 
+
+9. HRC_AR_SUPPLMENTARY_EMEA_F_V: 
+
+Picture 
+
+10. APAC_Inbound_Final 
+Picture 
+
+11 EMEA_Inbound_Final: 
+ 
+
+Picture 
+
+12 Cash_Final : 
+ 
+Picture 
+
+13 HCS_China_Final: 
+
+Picture 
+ 
+NOTE :  After the step function is executed successfully the batch extracts are then stored in CSV format in below S3 location. 
+ 
+NPROD S3 Bucket:      s3://odp-fin-nprod-daasbe-arcollections/arcollections/ 
+
+Prod S3 Bucket:   s3:// odp-fin-prod-daasbe-arcollections/arcollections/ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
