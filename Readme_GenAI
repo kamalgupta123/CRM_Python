@@ -1,0 +1,12 @@
+Gen AI :
+--------
+
+Generated image anything
+GAN - image multimodal
+Langchain - one output feed in other model pipe operator output transfer
+ChatGPT API - using Open Source API integrate in Python code and create models
+For using ChatGPT
+Create new chat for new prompt
+In settings in ChatGPT add a by default prompt to be used by default in all prompts you make in chat
+GenAI - settings of ChatGPT for your name what kind of prompts
+Midjourney describe and create photo —no prompting for removing some images —version
