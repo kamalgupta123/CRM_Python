@@ -10,3 +10,20 @@ Create new chat for new prompt
 In settings in ChatGPT add a by default prompt to be used by default in all prompts you make in chat
 GenAI - settings of ChatGPT for your name what kind of prompts
 Midjourney describe and create photo —no prompting for removing some images —version
+Google collab free Jupyter notebook for ML
+Image diffuser model change height, width breadth of image using model example gen2 graphic interface drop downs for increasing height,width and breadth
+Eval actual response vs predicted response
+Best prompt examples what you want and in which format table list etc tell in prompt
+Create eval function programmatically to check in output if hashtag or emojis there using if conditions
+Using prompts in code train seperate models as per need and then its output/response feed as input/ prompt to next model in code LLM chaining
+Google collab free for Jupyter online notebook
+DALLE - 3 model for image generation
+Select portion of image in edit mode and select and modify image using prompt - In normal ChatGPT also available
+Passport size photo from any photo create with Google Gemini … SEO and news check
+Video editing, identify objects in image video vision, translation can also be done chatGPT
+Notebook lm like ChatGPT chat with documents
+Promptfoo model to run test cases for a prompt using YAML file if prompt response contains specific words words mentioned in yaml file
+Lang watch model to evaluate prompts drag and drop
+Perplexity online search engine, search anything you like
+Anthropic handle computer and mouse movements using screenshots sending
+GitHub copilot AI pair programmer automatically put code visual studio code extension explain code right click fix bugs test cases generate right click code select
