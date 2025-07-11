@@ -1,6 +1,21 @@
 Gen AI :
 --------
 
+API implement test in postman api_key put as variable in collection stream:true in params for buffering/streaming of output in chatbot
+
+send original code implementation to chat gpt to learn from that code then after learning from that code chatgpt will produce new code.
+
+multiple prompts refine output
+
+low temprature less random less creative
+
+send an example in prompt to get better response.
+
+add prompt get ans then from ans take small detail and expand more detail about it.
+
+
+don't write whole prompt only single line all chat history preserve you are a ssoftware engineer one prompt then other questions as software engineer in other prompts.
+
 Generated image anything
 GAN - image multimodal
 Langchain - one output feed in other model pipe operator output transfer
