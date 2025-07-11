@@ -865,6 +865,264 @@ Rules rules written in access control list to protect your web application in AW
 
 Apply WAF in load balancer with other AWS serivdes Like AWS certificate Manager to build whole architechture.
 
+AWS Shield : Protect against DDoS attacks.
+
+AWS Firewall Manager : All Firewalls and security like AWS Shield (DDOS) and AWS WAF (SQL Injection) comes under Firewall Manager single security give in Shield and WAF and if same security already in shield or WAF is to be given to multiple architechtures or serivces or apps use Firewall Manager.
+
+In WAF, Attach Predefined Rules/ Restrictions on different AWS services like Application load balancer and other AWS services in architechture for security purposes.
+
+
+AWS Guarduty :
+-----------------
+Connected to logs of different AWS services checks for any security threat or attack in those logs by machine ;earning the guard duty service does it and if find any security threat create an event notify eventbridge and trigger SNS and lambda to handle that Security threat analysed by guardduty in log.
+
+Amazon Inspector : 
+---------------------
+Amazon Inspector to check for security vulnerabilities in different EC2 instances and containers
+
+AWS Macie :
+--------------
+AWS Macie protect against personal data stored in AWS s3 storage or other AWS services only data stored in AWS against security attacks or threats.
+
+
+Rajat :
+
+Requirement sheet get check with shashwat whom to send email to
+
+Send email to everyone about not seeing the two dropdowns ?
+
+
+AWS:
+-----
+
+CIDR:
+------
+Its like subnet mask.
+Suppose the IP is 2.1.0.0
+subnet mask is 255.255.0.0
+last two 0 are empty so it can allocate 255 * 255 IP address in the subnet as per subnet mask in the sub network 255*255 IPs as last two are 0 in subnet mask.
+
+CIDR is subnet mask if /0 - all IPs can be allocated
+if /32 - only one IP can be allocated
+so as the /digit do more less IPs can be there and as the /digit becomes less more IPs would be there.
+
+CIDR - /0 - all IPs in subnet - like subnet mask
+- /8 -  less IPs one filled 255.0.0.0 subnet mask
+- /16 - more less IPs two filled - 255.255.0.0 - subnet mask
+-/32 - more more less IPs three filled - only one IP - 255.255.255.0
+
+
+VPC has subnets in it
+VPC has Route table -- so route table connect all IPs (whole internet) 0.0.0.0 -- all IPs to the VPC in route table VPC and 0.0.0.0 is mentioned.
+ VPC has Network access control list (NACL) - it tells which IPs from outside can access the VPC inbound inside access and outbound rules from inside to outside which IPs can access.
+
+
+VPC has CIDR or subnet mask to create subnets in the VPC which will be private subnets since VPC is private
+
+To create subnets in VPC we have CIDR only particular or allowed IPs in CIDR or subnets in VPC
+
+Only 5 CIDR allowed in VPC.
+
+Subnet create CIDR
+5 IP already assigned in a subnet can’t be assigned to some other .255 already assigned for broadcast in subnet
+So no 27 CIDR or Subnet minimum 29 and if 27 IP CIDR where 5 IPs pre reserved it does not match 30-5  = 25 does not match 29 it comes to 25 wrong
+
+
+For Connecting your VPC with internet so that your subnets can work with internet. there is internet gateway that helps subnets in VPC and other things work with internet. INternet Gateway is connected to outside internet and route table and route table is connected to VPC so connectiing VPC through Route table and Internet Gateway to Internet.
+
+VPC has private subnet and public subnet by adding rules like in security groups in Public subnets included route table add 2 public subnet in one route table for VPC connection with internet now add access rules like security group in route table add 0.0.0.0 in route table containing public 2 subnets so that throught route table those 2 public subnets since they are public can be accessed from anywhere.
+
+Public subnet can be accessed by anyone if route table of public subnet has rule of 0.0.0.0
+
+To access private subnet we have to go through public subnet since both are in same VPC similar as encapsulation so private subnet can be accessed through public subnet by making use of baston host
+
+baston host is an EC2 instance in public subnet first SSH into baston host all users whole public then access private subnet through baston host by again doing SSH on port 22.
+
+Restrict the access of baston host in public subnet as much as possible as if accessed by whole public.If the whole public can access private subnet also through baston subnet of public subnet. then private subnet will be exposed to attackers so minimize access of baston host as much as possible.
+
+Give Bastion host the access to private subnet through security groups so through public subnet in same VPC using bastion host you can access private subnet in VPC which is inaccessible by outside.
+
+
+Get Requirement for API
+See Rajat creating API through FOrm
+Then create APIs yourself.
+
+
+AWS NAT Instances :
+----------------------
+
+NAT Instances are a way like Baston host to connect to private subnet EC2 where no body has access directly through public subnet. so in public subnet in VPC there would be a NAT instance. through that NAT instance in public subnet you would be able to connect to private subnet in VPC. and everything is connected to internet(internet gateway) using route table so NAT in public subnet is connected to internet gateway (internet) through route table (containing source and destination IP) and Then Same NAT in public subnet is connected to private subnet using route table.
+
+SO using NAT and Baston Host in public subnet of VPC one can access private subnet
+
+There are default VPC if no VPC manually selected
+Then there is manually created VPC which you select while creating EC2
+
+To give Private EC2 instance present in private subnet access to internet please use NAT gateway and Baston Host you can check if the private instance has access to internet or not by doing ssh into baston host then ssh into private ec2 through baston host and do ping google.com if returning packet it has access to internet.
+
+To add NAT Instance using an AMI image from AWS store ... NAT and Baston Host is used to connect private instance to internet by modifying security group and route table which can access what..
+
+NAT gateway are for connecting private subnet to internet through public subnet to  so one can access private subnet EC2 which are not accessible in general.
+Nat gateway unlike NAt instance its hardware is maintained by AWS and one NAT gateway occurs in one Availability zone. for backup other Nat gateway cannot be placed in same Availability zone other availability zone is to be selected to put the other NAT gateway.
+
+Waterfall not iterative devops and agile is iterative so can change as per customer feedback not in waterfall.
+
+jenkins 3 stages in pipeline code...build is compile using maven the code then test the code using selenium or cucumber and then deploy the code using ansible in containers -- ansible is a plugin install from plugins
+
+3 jenkins job to automatically compile code when code changes on github and then test the code autoimatically and push the code automatically into server.
+
+create jobs/cron in jenkins to do this task -- create build job to compile the code
+
+create another job to test the code in jenkins automatically 
+
+jenkins url app login create jobs give path to local directory of project containing .git which code to push to server using job from local directory haveing .git folder
+
+give path of local directory in jenkins app after login to push it to server
+
+run jenkin job manually or after every 1 min
+
+there are unit tests also checked in jenkins
+
+
+To allow access inside a VPC and from VPC to outside --
+to restrict the access in and out VPC we have NACLs and Security Groups
+
+NACL is attached to subnets in VPC restrict which IP can access the subnet in VPC and go outside the VPC. NACL is stateless as no EC2 is there
+
+Security group is attached to EC2 instead of subnet since security group is attached to EC2 it is called stateful.
+Security group restrict and allow access to EC2 only specific IPs allowed by security group are able to access EC2 of security gp. 
+
+Two servers connect with each other on a port to communicate
+to connect with a database on an EC2 the security group must allow default port of database 3306 with IP of server similar NACL should allow the same port to let enter into the VPC subnet of EC2
+
+After connection is made to database on port 3306 through security group access. and query is made on database then query output is to be sent back to client on some port wo connect back to requesting instance client to connect to client on any port to send back query response --
+
+so any port on client to connect with client is ephemeral port.
+
+IN NACL rules the rules with less number have more priority if allow select all ips allowed to access subnet if deny select no ip will be able to access subnet 
+
+
+In CHATGPT NEURAL NET MODEL WEIGHT ASSIGN TO EACH WORD IN SENTENCE IN NEURAL NET TO CHECK WHOLE SENTENCE MEANING which world relates to which context meaning...and then maps to response text or output as neural nets as per weights
+
+APIs input prompt and response of API -- output text -- generate image, text, voice implement only api in curl example shown
+
+less words in input prompt fast response
+
+pic upload and create as well as files ask questions one by one serially on files as well in chatgpt
+
+AWS VPC PEERING :
+----------------------
+
+Connect two VPCs together ... change security groups allow security groups.
+
+SSA E1 competency
+
+VPC Endpoint :
+---------------
+Earlier connecting VPC directly with Internet the private subnet directly with internet we had to go to long way like connect with NAT instance or Baston Host then connect with internet gateway through public subnet to connect private subnet to internet..and then to connect you manually created VPC to other AWS services...like S3 storage, AWS EC2 Instance etc to not go long way to connect private subnet to other AWS services and Internet we can use VPC endpoint to connect private subnet directly with internet i.e VPC directly with internet instead of going a long way to connect with internet.
+
+VPC endpoint to connect to internet directly without following long way through Internet Gateway
+
+GenAI E1
+----------
+
+API implement test in postman api_key put as variable in collection stream:true in params for buffering/streaming of output in chatbot
+
+send original code implementation to chat gpt to learn from that code then after learning from that code chatgpt will produce new code.
+
+multiple prompts refine output
+
+low temprature less random less creative
+
+send an example in prompt to get better response.
+
+add prompt get ans then from ans take small detail and expand more detail about it.
+
+
+don't write whole prompt only single line all chat history preserve you are a ssoftware engineer one prompt then other questions as software engineer in other prompts.
+
+AWS :
+------
+
+VPC Flow Logs :
+
+Check logs about unusual activity about IPs trying to access your VPC whole logs you can check who is trying to access VPC/subnet in VPC Flow logs. if any IP in logs rejected more than once that is problematic hacker IP trying to hack the server you can check if logs occuring more than once. you can check the problematic IP and prevent access from that IP by restricting the IP.
+
+To restrict the IPs you can modify security groups andd NACLs in VPC....there you can disallow that IP or allow that IP
+
+You can intergrate VPC flow logs with other AWS Services and can analyse the VPC flow logs in those services. Like in AWS Cloudwatch. So can analyse the VPC flow logs in other AWS services.
+
+VPN to connect to local data centre using VPN and customer gateway
+
+Use can use direct connect also to connect AWS to offline data centre/ storage instead of using VPC. you can connect multiple offline storage to AWS using direct connect.
+
+AWS Transit Gateway : connect multiple VPC's together in AWS using modifying route tables to connect the VPC. Transit gateway helps connect Multiple VPC's with offline storage if transit gateway combine with site to site VPN. As site to site VPN is used to connect offline storage.
+
+VPC Traffic Mirroring : To know what traffic is coming in VPC analyse IPs manage traffic fits above network load balancer
+
+Filter traffic coming to VPC using Traffic Monitoring.
+
+IPV6 : wide range of IPs as compared to IPv4...provide internet through internet gateway
+
+projectname/apiname/getdata?arg1=val&arg2=valEgress only Internet gateway - private subnet ec2 contacted with Internet through NAT gateway in public subnet
+Instead of NAT gateway in public subnet private subnet ec2 can contact directly to internet (internet gateway) using Egress only instead of NAT gateway directly through private subnet instead of public
+Terminate running instance unnecessarily and remove and delete other things like VPC and subnet created as it will cost you money
+All things like internet gateway internet and ec2 are connected using route table subnet created using CIDR subnet mask .. VPC flow logs to check attackers are attacking VPC or not
+Egress traffic out not in
+Ingress internet in not out
+Security gp firewall for ec2
+NACL firewall for subnet
+Disaster Recovery : if electricity off system off backup in multiple availability zone put and for disaster recovery take snapshot backup copy
+Database Migration tool  and schema conversion tool in AWS to convert MySQL to MongoDB by running a EC2 to convert in Database Migration service
+AWS Backup service - select services in AWS like EC2 in AWS Backup its data will be automatically backed up in ec2. Also AWS Backup service vault lock to prevent malicious delete of backups
+AWS application discovery service - for backup see which service to select in AWS backup which data is mapped to which service data which service and data to select for taking backup….check mapping with this service
+VMware service to run in offline on premise server setup run AWS cloud services
+SQS queue FIFO prevents data loss process data one by one other wait … fan out pattern
+To send data from s3 service to lambda to process use sNS subscribe to SNS topic all 3 Or multiple SQS queue data published to SNS topic via S3 when put or get object transferred copies of same data to all SQS queue as they have subscribed to the topic… same copy transferred to all SQS as subscribed to SNS topic
+Complex  RDS SQL queries cache using memcache, Redis and DAX part of elastic cache
+Blocking IP address in net
+To block IP address in VPC use NACL to disallow IP address
+Inside VPC in EC2 security group only allow is there in security group no deny so only allow non malicious IP that you want to allow
+Also you can use firewall in EC2
+WAF to block IP
+Cloudfront geo restriction to block IP
+Cloud formation : whole AWS architechture/ infrastructure tell to create via code … it saves cost and you can view the architechture created via code via Template whole flow chart using AWS application composer template see
+Define IAM role for cloudformation take IAM permission to create architechture via code
+AWS SES - to send email via AWS
+Amazon pinpoint - CRM to send advertisement to customers via SMS, email other activities
+AWS session Manager : ssh to ec2 securely connect to ec2 securely there are IAM permissions
+AWS systems manager run a single command to multiple ec2 for updating/patching multiple ec2 at once output of command for update put in cloud watch logs
+AWS cost explorer : how much cost of AWs sevices forecast from previous services ec2 usage per hour
+AWS cost anamoly service : using Machine learning detect where cost is more in AWS architechture
+AWS outposts - hybrid cloud on premise offline and AWS using outposts create on premise offline architechture in AWS hybrid cloud make
+AWS AppFlow : transfer SAAS software as a service like service now and sap data to aws
+AwS amplify : provide all AWS services in one place to create web and mobile apps
+AWS instance scheduler : Works with cloud formation whole infrastructure created with cloudformation instance scheduler checks with AWS services to start and stop to minimize cost of architechture created with cloudformation.
+AWS batch : unlike lambda not serverless no time limit run job and create unlimited amount of ec2 to successfully finish the job/ script how large script
+AWS trusted advisor : give suggestions on AWS services what to modify to increase performance.
+
+For good coder...
+make code reusable and scalable...
+for good employee...
+Take intiatives work with customers suggest something new which can be implemented...to make the project better....work with customer daily and suggest them what can be automated out of daily work.
+For good Developer...
+use tools...
+implement testing...unit tests to test your code....
+For good in communication...
+Join Forums....tell them information what they want to hear....customer do not want to hear technical information.
+
+https://lexs.trainocate.com/reports/live-labs
+Welcome@123
+
+if no data 204
+else if data 2020
+
+8 success and fail in history in connect details show....
+
+end tim double range remove start tim 
+
+no. of records not matching
+
 Egress only Internet gateway - private subnet ec2 contacted with Internet through NAT gateway in public subnet
 Instead of NAT gateway in public subnet private subnet ec2 can contact directly to internet (internet gateway) using Egress only instead of NAT gateway directly through private subnet instead of public
 
