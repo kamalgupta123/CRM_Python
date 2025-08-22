@@ -10,6 +10,11 @@ and Sprint select current as per date
  
 And add your work updates in notes
 
+
+Don’t use any other NP Id by Sneha or client/customer for secret creation, only DaaS NP IDs by Raju Anand would be used for secret creation
+
+
+
 DaaS Detail :
 
 after form fill first in automation feature branch code comes from codegenerator than PR automatically raised to merge code to dev
