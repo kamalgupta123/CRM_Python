@@ -1,5 +1,15 @@
 Hi Radius Batch Extracts Development Process 
 
+USer Story create Rally :
+
+New user story copy from old click new then iteration/track status and new user story create
+ 
+For new user story in metallion say no
+ 
+and Sprint select current as per date
+ 
+And add your work updates in notes
+
 DaaS Detail :
 
 after form fill first in automation feature branch code comes from codegenerator than PR automatically raised to merge code to dev
