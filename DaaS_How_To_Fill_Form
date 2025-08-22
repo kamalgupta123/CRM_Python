@@ -26,6 +26,8 @@ How to create API/BE:
 
 First form fill details in API and project form, after submit form data go in RDS, then approve form, and run code generator and create AWS components and run API and batch extracts.
  
+Filter in RDS query not apporvd = 'N' form, only those approve
+
 you can also manually modify code using PR and tell CI/CD team to work.
  
 For new Project, rename confluence user stories with your project name to create AWS roles and github repository for new project.
