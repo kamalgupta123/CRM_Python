@@ -78,4 +78,6 @@ Take repo access tdl-cots all components are created ask Atul same things copy
  
  
 github repo will automatically take in daas form as per project name
+
+logs for redshift can also be checked in dynamoDB myinstall api audit table
  
