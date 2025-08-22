@@ -35,3 +35,8 @@ For new Project, rename confluence user stories with your project name to create
 Create new github repo for new project...for it tell CI/CD to create repo with new project name create user story
  
 Also create AWS roles with new project name by replacing project name and get roles approved and create AWS roles by help of CloudOps team for new Projectname by raising user story for roles with cloudops team
+
+For new Project : raise US and confluence rename/ change project name from old confluence
+----------------
+
+Copy old request clone it do ctrl F and H in confluence and rename
