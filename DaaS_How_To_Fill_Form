@@ -10,8 +10,26 @@ For delimiteers directly put , and I and other things
  
 Copy from requirement sheet and put data
 
+---------------------------------------------------------
+
+DaaS Details
+-------------
+
 
 ETA ask access rally who has assigned to story....check rally who has been assigned to rally story and ask from them when this will be completed
 
 
 DL : group common for support multiple person added in requirement sheet
+
+How to create API/BE:
+--------------------
+
+First form fill details in API and project form, after submit form data go in RDS, then approve form, and run code generator and create AWS components and run API and batch extracts.
+ 
+you can also manually modify code using PR and tell CI/CD team to work.
+ 
+For new Project, rename confluence user stories with your project name to create AWS roles and github repository for new project.
+ 
+Create new github repo for new project...for it tell CI/CD to create repo with new project name create user story
+ 
+Also create AWS roles with new project name by replacing project name and get roles approved and create AWS roles by help of CloudOps team for new Projectname by raising user story for roles with cloudops team
