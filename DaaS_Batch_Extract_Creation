@@ -3,9 +3,13 @@ Hi Radius Batch Extracts Development Process
 DaaS Detail :
 
 after form fill first in automation feature branch code comes from codegenerator than PR automatically raised to merge code to dev
+
 only excel format supported DaaS
 
- 
+Role chaining is there only reporting cluster is query to which reporting-ar role is tagged and further to reporting-ar project service role is tagged.
+So it is like ETL innovation is data shared with Reporting cluster through role chainging of reporting-ar and project service role reporting cluster access provided
+Only reporting cluster would be queried not ETL Innovation
+
 Project Architechture : Batch Extract Architechture 
  
 Requirement Templates : 
