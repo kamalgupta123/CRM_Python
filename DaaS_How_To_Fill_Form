@@ -40,3 +40,20 @@ For new Project : raise US and confluence rename/ change project name from old c
 ----------------
 
 Copy old request clone it do ctrl F and H in confluence and rename
+
+
+For new API : Requirement sheet Ask...
+ 
+Rally access require to write confluence page and user story
+ 
+They will fill Project Name, SQL query, API name
+ 
+project name and track name change in roles etc so fill confluence page ...
+
+Track Name : Customer
+ 
+FOr user story workflow required without that no  
+ 
+User Story require for GitHub Repository creation without code (for code DaaS form is to be submitted) or code copy from old code and rename that code.
+ 
+FOr github repo creation and AWS roles creation we have to create user story to CICD and cloudOps teams...
