@@ -3,6 +3,7 @@ Hi Radius Batch Extracts Development Process
 DaaS Detail :
 
 after form fill first in automation feature branch code comes from codegenerator than PR automatically raised to merge code to dev
+only excel format supported DaaS
 
  
 Project Architechture : Batch Extract Architechture 
